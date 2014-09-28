@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="libs/jQueryMobile/jquery.mobile-1.4.4.min.css">
+    <script type="text/javascript" src="libs/jQuery/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="libs/jQueryMobile/jquery.mobile-1.4.4.min.js"></script>
+    <script src="libs/jQueryMobile/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=QN5DHsUZitEwBeVBRZCeTzmj"></script>
+    <script type="text/javascript" src="libs/js/search.js"></script>
+</head>
+<body>
+<div data-role="page" id="searchBus">
+    <div data-role="header"  data-theme="b">
+    </div>
+
+    <div data-role="content">
+        <div class="ui-widget">
+            <input id="startSite" type="text" placeholder="请输入起点">
+            <div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
+            <input id="endSite" type="text" placeholder="请输入终点">
+            <button id="focus" onclick="searchBus()">查询</button>
+        </div>
+    </div>
+
+    <div data-role="footer" data-position="fixed" data-theme="b">
+    </div>
+</div>
+</body>
+</html>

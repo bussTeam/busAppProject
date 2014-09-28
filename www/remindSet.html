@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="libs/jQueryMobile/jquery.mobile-1.4.4.min.css">
+    <script type="text/javascript" src="libs/jQuery/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="libs/jQueryMobile/jquery.mobile-1.4.4.min.js"></script>
+    <script src="libs/jQueryMobile/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=QN5DHsUZitEwBeVBRZCeTzmj"></script>
+    <script type="text/javascript" src="libs/js/init.js"></script>
+    <script type="text/javascript" src="libs/js/search.js"></script>
+    <script type="text/javascript" src="libs/js/searchBus.js"></script>
+    <script type="text/javascript" src="libs/js/searchBusLine.js"></script>
+    <script type="text/javascript" src="libs/js/remindSet.js"></script>
+</head>
+<body>
+    <div data-role="page" id="remindSet">
+        <div data-role="header" data-theme="b">
+            <a onclick="changeTobusapp()" data-role="button" data-icon="back">返回</a>
+            <h1>常用站点设置</h1>
+            <a onclick="siteAdd()" data-mini="true" data-icon="plus">添加</a>
+        </div>
+        <div data-role="content">
+            <div id="setShowResult" data-role="collapsible-set">
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

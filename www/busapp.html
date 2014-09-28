@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="libs/jQueryMobile/jquery.mobile-1.4.4.min.css">
+    <script type="text/javascript" src="libs/jQuery/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="libs/jQueryMobile/jquery.mobile-1.4.4.min.js"></script>
+    <script src="libs/jQueryMobile/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=QN5DHsUZitEwBeVBRZCeTzmj"></script>
+    <!--<script type="text/javascript" src="libs/js/cordova.js"></script>-->
+	<!--<script type="text/javascript" src="libs/js/location.js"></script>    -->
+    <script type="text/javascript" src="libs/js/init.js"></script>
+    <script type="text/javascript" src="libs/js/search.js"></script>
+    <script type="text/javascript" src="libs/js/searchBus.js"></script>
+    <script type="text/javascript" src="libs/js/searchBusLine.js"></script>
+    <script type="text/javascript" src="libs/js/remindSet.js"></script>
+</head>
+<body>
+
+    <div data-role="page" id="huancheng">
+        <div data-role="header"  data-theme="b" data-tap-toggle="false">
+            <a href="#left-panel-huancheng" data-mini="true" data-icon="grid">选项</a>
+            <h1>欢迎来到我的主页</h1>
+            <a id="city" class="city"  href="city.html" data-mini="true" data-icon="search">城市</a>           
+         </div>
+
+        <div data-role="panel" id="left-panel-huancheng" data-display="push" data-theme="b">
+            <ul data-role="listview" style="margin-top: 20%">
+                <li>是否开启震动</li>
+                <li>是否开启铃声</li>
+                <li><a href="remindSet.html" >到站提醒设置</a></li>
+                <li><a href="#map">查看地图</a></li>
+            </ul>
+        </div>
+
+        <div data-role="content">
+            <div class="ui-widget">
+               <input id="start" type="text" placeholder="请输入起点" onfocus="changeToInput()">
+               <input id="end" type="text" placeholder="请输入终点" onfocus="changeToInput()">
+               <button>查询</button>
+               <div id="container"></div>
+            </div>
+        </div>
+
+        <div data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#huancheng" data-transition="slide" class="ui-btn-active ui-state-persist"><h3>换乘</h3></a></li>
+                    <li><a href="#line" data-transition="slide"><h3>线路</h3></a></li>
+                    <li><a href="#site" data-transition="slide"><h3>附近</h3></a></li>
+                    <li><a href="add.html" data-transition="slide"><h3>随便看看</h3></a></li>
+                </ul>
+            </div>
+         </div>
+    </div>
+
+    <div data-role="page" id="line">
+        <div data-role="header" data-theme="b" data-tap-toggle="false">
+            <a href="#left-panel-line" data-mini="true" data-corners="true" data-icon="grid">选项</a>
+            <h1>欢迎来到我的主页</h1>
+            <a class="city" href="city.html" data-mini="true" data-corners="true" data-icon="search">城市</a>
+        </div>
+
+        <div data-role="panel" id="left-panel-line">
+            <input type="checkbox" data-role="flipswitch" style="margin-top:20%">
+        </div>
+
+        <div data-role="content">
+            <div>
+                <table>
+                    <tr>
+                        <td style="width: 100%">
+                            <input id="startline" type="text" placeholder="请输入公交线路">
+                        </td>
+                        <td>
+                            <button id="searchBusLine" onclick="searchBusLine()" data-inline="true" data-mini="true">查询</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#huancheng" data-transition="slide"><h3>换乘</h3></a></li>
+                    <li><a href="#line" data-transition="slide" class="ui-btn-active ui-state-persist"><h3>线路</h3></a></li>
+                    <li><a href="#site" data-transition="slide"><h3>附近</h3></a></li>
+                    <li><a href="add.html" data-transition="slide"><h3>随便看看</h3></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="site">
+        <div data-role="header" data-theme="b" data-tap-toggle="false">
+            <a href="#left-panel-site" data-mini="true" data-corners="true" data-icon="grid">选项</a>
+            <h1>欢迎来到我的主页</h1>
+            <a class="city" href="city.html" data-mini="true" data-corners="true" data-icon="search">城市</a>
+        </div>
+
+        <div data-role="panel" id="left-panel-site">
+            <input type="checkbox" data-role="flipswitch" style="margin-top:20%">
+        </div>
+
+        <div data-role="content">
+            <div>
+                <table>
+                    <tr>
+                        <td style="width: 100%">
+                            <input id="startsite" type="text" placeholder="请输入要搜索的关键字">
+                        </td>
+                        <td>
+                            <button data-inline="true" onclick="searchNearby()" data-mini="true">查询</button>
+                        </td>
+                    </tr>
+                </table>
+                <div id="searchNearBy"></div>
+            </div>
+
+        </div>
+
+        <div data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#huancheng" data-transition="slide"><h3>换乘</h3></a></li>
+                    <li><a href="#line" data-transition="slide"><h3>线路</h3></a></li>
+                    <li><a href="#site" data-transition="slide" class="ui-btn-active ui-state-persist"><h3>附近</h3></a></li>
+                    <li><a href="add.html" data-transition="slide"><h3>随便看看</h3></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div data-role="page" id="map">
+        <div id="list" data-theme="b">
+            <ul data-role="listview">
+                <li><a href="#busResult">查看详细</a></li>
+            </ul>
+        </div>
+         <div id="baiduMap"></div>
+            <div data-role="panel" id="busResult" data-display="push">
+              <div id="buslineResult"></div>
+            </div>
+    </div>
+</body>
+    <script type="text/javascript">
+	    $('#baiduMap').height($(window).height());
+//	    var test = function(){
+//		var cb = function(data){  //回调函数
+//			longitude=data.Longitude;
+//			latitude=data.Latitude;
+//			initMap(longitude,latitude);
+//			};
+//		window.plugins.locPlugin.location(cb);
+//		}
+        initMap(longitude,latitude);
+    </script>
+</html>

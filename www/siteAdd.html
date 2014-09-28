@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="libs/jQueryMobile/jquery.mobile-1.4.4.min.css">
+    <script type="text/javascript" src="libs/jQuery/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="libs/jQueryMobile/jquery.mobile-1.4.4.min.js"></script>
+    <script src="libs/jQueryMobile/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=QN5DHsUZitEwBeVBRZCeTzmj"></script>
+    <script type="text/javascript" src="libs/js/init.js"></script>
+    <script type="text/javascript" src="libs/js/search.js"></script>
+    <script type="text/javascript" src="libs/js/searchBus.js"></script>
+    <script type="text/javascript" src="libs/js/searchBusLine.js"></script>
+    <script type="text/javascript" src="libs/js/remindSet.js"></script>
+</head>
+<body>
+    <div data-role="page" id="contextAdd">
+
+        <div data-role="header" data-theme="b">
+            <a onclick="changeToRemindSet()" data-role="button" data-icon="back">返回</a>
+            <h1>添加站点</h1>
+        </div>
+
+        <div data-role="content">
+            <label for="siteRemind">站点:</label>
+            <input id="siteRemind"  type="text" placeholder="请输入站点" data-inline="true">
+            <label for="note">备注:</label>
+            <textarea id="note" placeholder="请输入备注信息"></textarea>
+            <label for="switch">是否开启到站提醒:</label>
+            <select id="switch" data-role="flipswitch">
+                <option value="off">关闭</option>
+                <option value="on">打开</option>
+            </select>
+            <button onclick="add()">确定</button>
+        </div>
+
+    </div>
+</body>
+</html>
