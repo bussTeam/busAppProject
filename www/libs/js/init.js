@@ -1,29 +1,40 @@
 /**
  * Created by bin.zhang on 14-9-18.
  */
-var longitude = 116.404;
+var longitude =116.404;
 var latitude = 39.915;
 var markerArr = null;
 var map = null;
 var userSite = [];
-
+var myCity = new BMap.LocalCity();
 function initMap(longitude,latitude){
 	this.longitude = longitude;
 	this.latitude = latitude;
 	markerArr = [{title:"我的位置",point:longitude+"|"+latitude,isOpen:0,icon:{w:32,h:32,l:0,t:0,x:6,lb:5}}];
     createMap();//创建地图
+   myCity.get(getLocalCityByIp);//通过ip返回当前所在城市地图
     setMapEvent();//设置地图事件
     addMapControl();//向地图添加控件
     addMarker();//向地图中添加marker
-    initCity();
+   // initCity();
 }
 //创建地图函数：
 function createMap(){
     map = new BMap.Map("baiduMap");//在百度地图容器中创建一个地图
-    var point = new BMap.Point(longitude,latitude);//定义一个中心点坐标
-    map.centerAndZoom(point,15);//设定地图的中心点和坐标并将地图显示在地图容器中
+   var point = new BMap.Point(longitude,latitude);//定义一个中心点坐标
+    map.centerAndZoom(point,11);//设定地图的中心点和坐标并将地图显示在地图容器中
 }
-
+//通过ip获取所在城市 modify by hxw
+function getLocalCityByIp(result){
+    var cityName = result.name;
+    map.setCenter(cityName);
+    document.getElementById("city").innerText=cityName;
+   // alert("当前定位城市:"+cityName);
+    city=cityName;
+    for(var i = 0; i<document.getElementsByClassName("city").length; i++){
+        document.getElementsByClassName("city")[i].innerText = city;
+    }
+}
 
 //地图事件设置函数：
 function setMapEvent(){
