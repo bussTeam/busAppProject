@@ -36,6 +36,7 @@ function initCity(city) {
 //        }
 //    });
   //  freshMap(city);
+    map.clearOverlays();
     if(city != ""){
         map.centerAndZoom(city,11);      // 用城市名设置地图中心点
     }

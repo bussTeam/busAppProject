@@ -31,7 +31,25 @@ function searchBus() {
     var transit = new BMap.TransitRoute(map, {
         renderOptions: {map: map, panel: "buslineResult"}
     });
-    transit.search(siteStart, siteEnd);
+    //这里判断如果siteStart和siteEnd并不是通过map对象初始化的对象，而是页面文本内容
+    //则同样进行搜索，避免在页面不选择指定的地点，无法搜索出来的情况。但是居然搜不出来，神奇。百度提供的资料是可以根据地点，Point去搜索的呀 modify by huangxinwei
+    var pointStart ;//定义一个点坐标
+    var pontEnd;
+    if(siteStart==null&&siteEnd!=null){
+        siteStart= document.getElementById("startSite").value;
+        pontEnd=new BMap.Point(siteEnd.lng,siteEnd.lat);
+        transit.search(siteStart, pontEnd);
+    }else if(siteStart!=null&&siteEnd==null){
+        siteEnd= document.getElementById("endSite").value;
+        pointStart=new BMap.Point(siteStart.lng,siteStart.lat);
+        transit.search(pointStart, siteEnd);
+    }else if(siteStart==null&&siteEnd==null){
+        siteStart= document.getElementById("startSite").value;
+        siteEnd= document.getElementById("endSite").value;
+        transit.search(siteStart,  siteEnd);
+
+    }else{ transit.search(siteStart, siteEnd);
+    }
     $('#list').show();
     $.mobile.changePage("busapp.html#map","pop")
 }
