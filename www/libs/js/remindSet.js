@@ -58,21 +58,31 @@ function changeToRemindSet(){
 
 function add() {
     var siteSetObject = new Object();
-    siteSetObject.siteName = document.getElementById('siteRemind').value;
-    siteSetObject.point = siteSet[siteSetObject.siteName];
+    siteSetObject.value = document.getElementById('siteRemind').value;
+    siteSetObject.pointX = siteSet[siteSetObject.value].lat;
+    siteSetObject.pointY = siteSet[siteSetObject.value].lng;
     siteSetObject.note = document.getElementById('note').value;
-    siteSetObject.isNo = document.getElementById('switch').value;
-    userSite.push(siteSetObject);
+    siteSetObject.isRemind = document.getElementById('switch').value;
+    callNativePlugin('write', objectToJsonArray(siteSetObject));
+//    userSite.push(siteSetObject);
     show();
     $.mobile.changePage("remindSet.html");
 }
 
+function objectToJsonArray(obj){
+    var jsonArray = [];
+    jsonArray.push("{ value:'" + obj.value + "', pointX:'"+obj.pointX + "', pointY: '" +obj.pointY+
+        "', note:'" + obj.note + "', isRemind:'"+obj.isRemind + "'}")
+    return jsonArray;
+}
+
 function show(){
     var setResultInnerHtml = "";
-    for(var i = 0; i < userSite.length; i++){
+    callNativePlugin('read',[]);
+    for(var i = 0; i < siteListFromXml.length; i++){
         setResultInnerHtml += "<div data-role='collapsible'>"
-                            +"<h1>"+userSite[i].siteName+"</h1>"
-                            +"<p>"+userSite[i].note+"</p>"
+                            +"<h1>"+siteListFromXml[i].value+"</h1>"
+                            +"<p>"+siteListFromXml[i].note+"</p>"
                             +"</div>";
     }
     $(document).on("pageinit",'#remindSet',function(event){
