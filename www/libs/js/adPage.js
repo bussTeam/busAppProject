@@ -11,7 +11,7 @@ function showAd() {
 function setValue(data){
     $.mobile.changePage("add.html","pop");
     if(data.success == true){
-        var resultData = data.data.data;
+        var resultData = data.result;
         var adList = [];
         for(var i = 0; i < resultData.length; i++){
             var divString = "<div data-role='collapsible'>";
@@ -23,5 +23,8 @@ function setValue(data){
         $('#adResult')[0].innerHTML = adList.join('</br>') ;
         $('#adResult').html(adList);
         $('#adResult').trigger("create");
+    }
+    else{
+        alert(data.error);
     }
 }
