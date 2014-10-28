@@ -5,16 +5,18 @@
     <link rel="stylesheet" href="libs/jQueryMobile/jquery.mobile-1.4.4.min.css">
     <script type="text/javascript" src="libs/jQuery/jquery-2.1.1.js"></script>
     <script type="text/javascript" src="libs/jQueryMobile/jquery.mobile-1.4.4.min.js"></script>
-    <script type="text/javascript" src="libs/js/search.js"></script>
+    <script src="libs/jQueryMobile/jquery-ui.js"></script>
+    <script src="libs/js/adPage.js"></script>
 </head>
 <body>
-<div data-role="page">
+<div data-role="page" id="idPage">
     <div data-role="header" data-theme="b">
         <h1>欢迎来到我的主页</h1>
+        <a href="AdEdit.html" data-mini="true" data-icon="search">添加</a>
     </div>
     <div data-role="content">
         <div id="adResult" data-role="collapsible-set">
-            <div data-role='collapsible'><h3>测试</h3><p>我是来测试的，你信不信</p></div>
+            <!--<div data-role='collapsible'><h3>测试</h3><p>我是来测试的，你信不信</p></div></br><div data-role='collapsible'><h3>网页</h3><p>我是从网页里面插入数据库的</p></div>-->
         </div>
     </div>
 
@@ -29,6 +31,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

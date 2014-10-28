@@ -17,7 +17,7 @@ function searchBusLine(){
                 busSite[results.name] += "<p>"+ results.getBusStation(i).name+"</p>";
             }
             busSiteList.push(busSite[results.name] + "</div>")
-            $('#busLineResult').innerHTML = busSiteList.join('</br>') ;
+            $('#busLineResult').innerHTML = busSiteList.join('</br>');
             $('#busLineResult').html(busSiteList);
             $('#busLineResult').trigger("create");
         }

@@ -5,7 +5,7 @@
 function showAd() {
     comWithServerFunc(function (data) {
         setValue(data)
-    },null);
+    },"getNewsInfo",null);
 }
 
 function setValue(data){
@@ -20,11 +20,24 @@ function setValue(data){
             divString += "</div>";
             adList.push(divString);
         }
-        $('#adResult')[0].innerHTML = adList.join('</br>') ;
-        $('#adResult').html(adList);
-        $('#adResult').trigger("create");
+        $(document).on("pageinit",'#idPage',function(event){
+            $('#adResult').innerHTML = adList.join('<br/>');
+            $('#adResult').html(adList);
+            $('#adResult').trigger("create");
+        });
     }
     else{
         alert(data.error);
     }
 }
+
+function Confirmation() {
+    var params = "title=";
+    params += document.getElementById("title").value;
+    params += "&content=";
+    params += document.getElementById("content").value;
+    comWithServerFunc(function (data) {
+        showAd();
+    },"insertNewsInfo",params);
+}
+

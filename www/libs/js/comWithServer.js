@@ -3,8 +3,8 @@
  */
 
 
- function comWithServerFunc(callback,params){
-    $.get('http://localhost:8080/getNewsInfo.do?callback=?', params, function cb(data) {
+ function comWithServerFunc(callback,method,params){
+    $.get('http://localhost:8080/'+method+'.do?callback=?', params, function cb(data) {
         callback(data);
     }, 'json');
   }
