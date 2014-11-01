@@ -4,7 +4,7 @@
 
 
  function comWithServerFunc(callback,method,params){
-    $.get('http://localhost:8080/'+method+'.do?callback=?', params, function cb(data) {
+    $.get('http://busapptest.vicp.cc/'+method+'.do?callback=?', params, function cb(data) {
         callback(data);
     }, 'json');
   }
