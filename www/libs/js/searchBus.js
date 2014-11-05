@@ -32,23 +32,44 @@ function searchBus() {
         renderOptions: {map: map, panel: "buslineResult"}
     });
     //这里判断如果siteStart和siteEnd并不是通过map对象初始化的对象，而是页面文本内容
-    //则同样进行搜索，避免在页面不选择指定的地点，无法搜索出来的情况。但是居然搜不出来，神奇。百度提供的资料是可以根据地点，Point去搜索的呀 modify by huangxinwei
+    //则同样进行搜索，避免在页面不选择指定的地点，无法搜索出来的情况。 modify by huangxinwei
     var pointStart ;//定义一个点坐标
     var pontEnd;
     if(siteStart==null&&siteEnd!=null){
-        siteStart= document.getElementById("startSite").value;
-        pontEnd=new BMap.Point(siteEnd.lng,siteEnd.lat);
-        transit.search(siteStart, pontEnd);
+        //  siteStart= document.getElementById("startSite").value;
+        // pontEnd=new BMap.Point(siteEnd.lng,siteEnd.lat);
+        //transit.search(siteStart, pontEnd);
+        alert('请从下拉列表中选择起点');
+        document.getElementById("startSite").value="";
+        siteStart=null;
+
+        return false;
     }else if(siteStart!=null&&siteEnd==null){
-        siteEnd= document.getElementById("endSite").value;
-        pointStart=new BMap.Point(siteStart.lng,siteStart.lat);
-        transit.search(pointStart, siteEnd);
+        //   siteEnd= document.getElementById("endSite").value;
+        //    pointStart=new BMap.Point(siteStart.lng,siteStart.lat);
+        //    transit.search(pointStart, siteEnd);
+        alert('请从下拉列表中选择终点');
+
+        siteEnd = null;
+        document.getElementById("endSite").value="";
+        return false;
     }else if(siteStart==null&&siteEnd==null){
-        siteStart= document.getElementById("startSite").value;
-        siteEnd= document.getElementById("endSite").value;
-        transit.search(siteStart,  siteEnd);
+        // siteStart= document.getElementById("startSite").value;
+        // siteEnd= document.getElementById("endSite").value;
+        //  transit.search(siteStart,  siteEnd);
+        alert('请从下拉列表中选择起点和终点');
+        document.getElementById("startSite").value="";
+        document.getElementById("endSite").value="";
+        siteStart=null;
+        siteEnd = null;
 
     }else{ transit.search(siteStart, siteEnd);
+        document.getElementById("startSite").value="";
+        document.getElementById("endSite").value="";
+        siteStart=null;
+        siteEnd = null;
+
+
     }
     $('#list').show();
     $.mobile.changePage("busapp.html#map","pop")
